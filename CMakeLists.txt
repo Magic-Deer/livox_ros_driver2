@@ -326,6 +326,10 @@ else($ENV{ROS_VERSION} STREQUAL "2")
     ${APR_LIBRARIES}
   )
 
+  target_link_options(${PROJECT_NAME} PRIVATE
+    -Wl,--exclude-libs,liblivox_lidar_sdk_static.a
+  )
+
   rclcpp_components_register_node(${PROJECT_NAME}
     PLUGIN "livox_ros::DriverNode"
     EXECUTABLE ${PROJECT_NAME}_node
